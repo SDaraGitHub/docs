@@ -1,0 +1,113 @@
+---
+title: Stats component
+description: Display statistics with Tailwind CSS and PrimeNG
+---
+
+## Stats section
+
+```html
+<div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+  <div class="text-center mb-6">
+    <h2 class="text-900 font-bold text-4xl mb-3">Our Achievements</h2>
+    <p class="text-700 text-xl">Trusted by thousands of customers worldwide</p>
+  </div>
+  
+  <div class="grid">
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="surface-card shadow-2 p-4 border-round text-center">
+        <i class="pi pi-users text-blue-500 text-5xl mb-3"></i>
+        <div class="text-900 font-bold text-4xl mb-2">10K+</div>
+        <div class="text-700 text-xl">Active Users</div>
+      </div>
+    </div>
+    
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="surface-card shadow-2 p-4 border-round text-center">
+        <i class="pi pi-globe text-green-500 text-5xl mb-3"></i>
+        <div class="text-900 font-bold text-4xl mb-2">50+</div>
+        <div class="text-700 text-xl">Countries</div>
+      </div>
+    </div>
+    
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="surface-card shadow-2 p-4 border-round text-center">
+        <i class="pi pi-chart-line text-purple-500 text-5xl mb-3"></i>
+        <div class="text-900 font-bold text-4xl mb-2">99.9%</div>
+        <div class="text-700 text-xl">Uptime</div>
+      </div>
+    </div>
+    
+    <div class="col-12 md:col-6 lg:col-3">
+      <div class="surface-card shadow-2 p-4 border-round text-center">
+        <i class="pi pi-star text-yellow-500 text-5xl mb-3"></i>
+        <div class="text-900 font-bold text-4xl mb-2">4.9/5</div>
+        <div class="text-700 text-xl">Rating</div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+## Alternative layout
+
+```html
+<div class="bg-gray-50 px-4 py-16 md:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+        <div class="text-blue-600 text-5xl font-bold mb-2">10K+</div>
+        <div class="text-gray-600 text-lg">Active Users</div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+        <div class="text-green-600 text-5xl font-bold mb-2">50+</div>
+        <div class="text-gray-600 text-lg">Countries</div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+        <div class="text-purple-600 text-5xl font-bold mb-2">99.9%</div>
+        <div class="text-gray-600 text-lg">Uptime</div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+        <div class="text-yellow-600 text-5xl font-bold mb-2">4.9/5</div>
+        <div class="text-gray-600 text-lg">Rating</div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+## With PrimeNG components
+
+```typescript
+import { Component } from '@angular/core';
+import { CardModule } from 'primeng/card';
+
+@Component({
+  selector: 'app-stats',
+  template: `
+    <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+      <div class="grid">
+        <div class="col-12 md:col-6 lg:col-3" *ngFor="let stat of stats">
+          <p-card styleClass="text-center">
+            <i [class]="'pi ' + stat.icon + ' text-5xl mb-3'" [style.color]="stat.color"></i>
+            <div class="text-900 font-bold text-4xl mb-2">{{ stat.value }}</div>
+            <div class="text-700 text-xl">{{ stat.label }}</div>
+          </p-card>
+        </div>
+      </div>
+    </div>
+  `,
+  standalone: true,
+  imports: [CardModule]
+})
+export class StatsComponent {
+  stats = [
+    { icon: 'pi-users', value: '10K+', label: 'Active Users', color: '#3B82F6' },
+    { icon: 'pi-globe', value: '50+', label: 'Countries', color: '#10B981' },
+    { icon: 'pi-chart-line', value: '99.9%', label: 'Uptime', color: '#8B5CF6' },
+    { icon: 'pi-star', value: '4.9/5', label: 'Rating', color: '#F59E0B' }
+  ];
+}
+```
